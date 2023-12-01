@@ -18,6 +18,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { error } from "console";
 import { register } from "./controllers/Auth/index.js";
+import authRoutes from "./routes/Auth/index.js";
+
 
 /* CONFIGURATIONS */
 
@@ -48,6 +50,8 @@ const upload = multer({ storage });
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register);
+/* ROUTES */
+app.use ("/auth", authRoutes);
 
 /* MONGOOSE SETUP*/
 const PORT = process.env.PORT || 6001;
