@@ -21,6 +21,9 @@ import { register } from "./controllers/Auth/index.js";
 import authRoutes from "./routes/Auth/index.js";
 import { verifyToken } from "./middleware/Auth.js";
 import userRoutes from "./routes/Users/index.js";
+import User from "./models/User/index.js";
+import Post from "./models/Post/index.js";
+import {users, posts} from "./data/index.js";
 
 /* CONFIGURATIONS */
 
@@ -66,5 +69,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+    User.insertMany(users);
+    Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`));
